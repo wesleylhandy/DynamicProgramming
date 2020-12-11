@@ -1,0 +1,12 @@
+{
+  "name": "DynamicProgramming",
+  "version": "1.0.0",
+  "description": "Overlapping SubProblems - any instance where some larger problem can be decomposed into smaller instances of the same problem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["dynamic programming", "memoization", "tabulation", "alogrithms"],
+  "author": "Wesley L. Handy <wesley@wearecreativ.media>",
+  "license": "ISC"
+}

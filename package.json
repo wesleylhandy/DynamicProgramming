@@ -4,7 +4,8 @@
   "description": "Overlapping SubProblems - any instance where some larger problem can be decomposed into smaller instances of the same problem",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon"
+    "help": "node main -h",
+    "debug": "node main -d"
   },
   "keywords": [
     "dynamic programming",

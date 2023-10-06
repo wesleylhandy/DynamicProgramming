@@ -2,11 +2,11 @@
  * Determines the best combination of numbers within an array that can be summed together to equal a target value
  * O(n*m^2) time complexity where n is the length of array and m is the target value
  * @param {Number} targetSum
- * @param {[Number]} numbers
+ * @param {Number[]} numbers
  * @param {Object} memo - the object containing previously discovered values
- * @returns {[Number]|null} the numbers in array that add up to targetSum or null if not found
+ * @returns {Number[]|null} the numbers in array that add up to targetSum or null if not found
  */
-function memoizedBestAddendsForSum(targetSum, numbers, memo = {}) {
+function bestAddendsForSum(targetSum, numbers, memo = {}) {
     if (targetSum === 0) return []
     if (targetSum < 0) return null
     if (targetSum in memo) return memo[targetSum]
@@ -15,7 +15,7 @@ function memoizedBestAddendsForSum(targetSum, numbers, memo = {}) {
   
     for (let num of numbers) {
       const remainder = targetSum - num
-      const remainderCombination = memoizedBestAddendsForSum(remainder, numbers, memo)
+      const remainderCombination = bestAddendsForSum(remainder, numbers, memo)
       if (remainderCombination !== null) {
         const combination = [...remainderCombination, num]
         if (shortestCombination === null || combination.length < shortestCombination.length) {
@@ -27,4 +27,4 @@ function memoizedBestAddendsForSum(targetSum, numbers, memo = {}) {
     return shortestCombination
 }
 
-module.exports.memoizedBestAddendsForSum = memoizedBestAddendsForSum
+module.exports.bestAddendsForSum = bestAddendsForSum

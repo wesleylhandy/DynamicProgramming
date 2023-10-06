@@ -2,11 +2,11 @@
  * Determines the best combination of numbers within an array that can be summed together to equal a target value
  * O(n*m^2) time complexity and space complexty of O(m*n) where n is the length of array and m is the target value
  * @param {Number} targetSum
- * @param {[Number]} numbers
+ * @param {Number[]} numbers
  * @param {Object} memo - the object containing previously discovered values
- * @returns {[Number]|null} the numbers in array that add up to targetSum or null if not found
+ * @returns {Number[]|null} the numbers in array that add up to targetSum or null if not found
  */
-function tabulatedBestAddendsForSum(targetSum, numbers) {
+function bestAddendsForSum(targetSum, numbers) {
     const table = new Array(targetSum + 1).fill(null)
     table[0] = []
   
@@ -23,4 +23,4 @@ function tabulatedBestAddendsForSum(targetSum, numbers) {
     return table[targetSum]
 }
 
-module.exports.tabulatedBestAddendsForSum = tabulatedBestAddendsForSum;
+module.exports.bestAddendsForSum = bestAddendsForSum;

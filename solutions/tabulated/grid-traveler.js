@@ -4,7 +4,7 @@
  * @param {Number} n
  * @returns {Number} - the number of paths through the grid
  */
-function tabulatedGridTraveler(m, n) {
+function gridTraveler(m, n) {
     const table = new Array(m + 1).fill().map(() => new Array(n + 1).fill(0))
     table[1][1] = 1
     for (let i = 0; i <= m; i++) {
@@ -17,4 +17,4 @@ function tabulatedGridTraveler(m, n) {
     return table[m][n]
 }
 
-module.exports.tabulatedGridTraveler = tabulatedGridTraveler
+module.exports.gridTraveler = gridTraveler

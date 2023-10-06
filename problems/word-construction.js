@@ -11,7 +11,7 @@
  * @example
  * wordConstructionsFromWordBank("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", ["e","ee","eee","eeeee","eeeee","eeeeee"]) // Some attempts might use more time that you can imagine
  */
-function bruteForceWordConstructionsFromWordBank(targetWord, wordBank) {
+function wordsFromWordBank(targetWord, wordBank) {
   if (targetWord === '') return [[]]
 
   const result = []
@@ -19,7 +19,7 @@ function bruteForceWordConstructionsFromWordBank(targetWord, wordBank) {
   for (let word of wordBank) {
     if (targetWord.indexOf(word) === 0) {
       const suffix = targetWord.substring(word.length)
-      const suffixConstructions = bruteForceWordConstructionsFromWordBank(suffix, wordBank)
+      const suffixConstructions = wordsFromWordBank(suffix, wordBank)
       const targetConstructions = suffixConstructions.map((way) => [word, ...way])
       result.push(...targetConstructions)
     }
@@ -27,5 +27,5 @@ function bruteForceWordConstructionsFromWordBank(targetWord, wordBank) {
   return result
 }
 
-module.exports.bruteForceWordConstructionsFromWordBank = bruteForceWordConstructionsFromWordBank;
+module.exports.wordsFromWordBank = wordsFromWordBank;
 

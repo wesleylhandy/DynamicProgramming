@@ -6,10 +6,10 @@
  * @param {Number} n
  * @returns {Number} - the number of paths through the grid
  */
-function bruteForceGridTraveler(m, n) {
+function gridTraveler(m, n) {
   if (m === 1 && n === 1) return 1
   if (m === 0 || n === 0) return 0
-  return bruteForceGridTraveler(m - 1, n) + bruteForceGridTraveler(m, n - 1)
+  return gridTraveler(m - 1, n) + gridTraveler(m, n - 1)
 }
 
-module.exports.bruteForceGridTraveler = bruteForceGridTraveler
+module.exports.gridTraveler = gridTraveler

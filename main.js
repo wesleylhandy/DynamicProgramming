@@ -13,14 +13,9 @@ program
 
 program.parse(process.argv);
 
-const perfObserver = new PerformanceObserver((items) => {
-  items.getEntries().sort((a, b) => a.startTime < b.startTime).forEach((entry) => {
-    console.info(entry.name, '\t', '\t', entry.duration);
-  });
-});
-
 function main() {
-  const options = program.opts()
+
+  const options = program.opts();
   const { debug, problem, execution } = options;
   if (debug) console.debug(options);
 
@@ -31,13 +26,26 @@ function main() {
     return;
   }
 
-  perfObserver.observe({ entryTypes: ["function"] })
+  const timeout = setTimeout(() => {
+    console.error(`${problem} is taking greater than 1 minute to complete`);
+    process.exit(124);
+  }, 60000);
+
+  const perfObserver = new PerformanceObserver((items) => {
+    items.getEntries().sort((a, b) => a.startTime < b.startTime).forEach((entry) => {
+      console.info(JSON.stringify({ name: entry.name, arguments: entry.detail, duration: entry.duration }));
+    });
+    clearTimeout(timeout);
+    perfObserver.disconnect();
+  });
+
+  perfObserver.observe({ entryTypes: ["function"] });
 
   const performanceWrapperProblem = performance.timerify(problemToSolve[execution]);
 
-  for (let testCase of problemToSolve.testCases) {
-    performanceWrapperProblem(...testCase);
-  }
+  for (let testCaseArguments of problemToSolve.testCaseArguments) {
+    performanceWrapperProblem(...testCaseArguments);
+  } 
 }
 
 main();

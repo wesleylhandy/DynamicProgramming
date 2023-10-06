@@ -3,7 +3,7 @@
  * @param {Number} n - an integer
  * @returns {Number} - the nth number in the fibonacci sequence
  */
-function tabulatedNthFibonacci(n) {
+function nthFibonacci(n) {
     const table = new Array(n + 1).fill(0)
     table[1] = 1
     for (let i = 0; i <= n; i++) {
@@ -13,4 +13,4 @@ function tabulatedNthFibonacci(n) {
     return table[n]
 }
 
-module.exports.tabulatedNthFibonacci = tabulatedNthFibonacci
+module.exports.nthFibonacci = nthFibonacci

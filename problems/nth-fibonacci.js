@@ -3,11 +3,11 @@
  * @param {Number} n - an integer
  * @returns {Number} - the nth number in the fibonacci sequence
  */
-function bruteForceNthFibonacci(n) {
+function nthFibonacci(n) {
   if (n <= 2) {
     return 1
   }
-  return bruteForceNthFibonacci(n - 1) + bruteForceNthFibonacci(n - 2)
+  return nthFibonacci(n - 1) + nthFibonacci(n - 2)
 }
 
-module.exports.bruteForceNthFibonacci = bruteForceNthFibonacci
+module.exports.nthFibonacci = nthFibonacci

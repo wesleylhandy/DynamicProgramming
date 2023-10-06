@@ -2,7 +2,9 @@
 
 Overlapping SubProblems - any instance where some larger problem can be decomposed into smaller instances of the same problem
 
-These notes and the code in this follow along with this video: https://www.youtube.com/watch?v=oBt53YbR9Kk
+Videos on Dynamic Programming:
+- https://youtu.be/oBt53YbR9Kk?si=Cw-xljXMO1WTk8uT
+- https://youtu.be/Hdr64lKQ3e4?si=I-yFmf0pXlJz4q0m
 
 **Steps to implementing Dynamic Programming**
 

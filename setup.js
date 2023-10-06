@@ -13,9 +13,14 @@ const { tabulatedCanConstructWord } = require("./solutions/table/can-construct-w
 const { bruteForceCanSumNumbersToTarget } = require('./problems/can-sum');
 const { memoizedCanSumNumbersToTarget } = require('./solutions/memoized/can-sum');
 const { tabulatedCanSumNumbersToTarget } = require('./solutions/table/can-sum');
+
 const { bruteForceWordsFromWordBankCount } = require('./problems/count-construct');
 const { memoizedWordsFromWordBankCount } = require('./solutions/memoized/count-construct');
 const { tabulatedWordsFromWordBankCount } = require('./solutions/table/count-construct');
+
+const { bruteForceGridTraveler } = require('./problems/grid-traveler');
+const { memoizedGridTraveler } = require('./solutions/memoized/grid-traveler');
+const { tabulatedGridTraveler } = require('./solutions/table/grid-traveler');
 
 /**
  * @type {Object.<string, string>}
@@ -24,8 +29,9 @@ const { tabulatedWordsFromWordBankCount } = require('./solutions/table/count-con
 const Problems = {
     BestAddendsForSum: 'BestAddendsForSum',
     CanConstructWordFromWordBank: 'CanConstructWordFromWordBank',
-    WordConstructionsFromWordBank: 'WordConstructionsFromWordBank',
     CanSumNumbersToTarget: 'CanSumNumbersToTarget',
+    GridTraveler: 'GridTraveler',
+    WordConstructionsFromWordBank: 'WordConstructionsFromWordBank',
     WordsFromWordBankCount: 'WordsFromWordBankCount'
 }
 
@@ -82,7 +88,19 @@ function problems(problem) {
                 [8, [2, 3, 5]]
                 [300, [7, 14]]
             ]
-        }]
+        }],
+        [Problems.GridTraveler, {
+            brute: bruteForceGridTraveler,
+            memo: memoizedGridTraveler,
+            table: tabulatedGridTraveler,
+            testCases: [
+                [1, 1]
+                [2, 3]
+                [3, 2]
+                [3, 3]
+                [18, 18]
+            ]
+        }],
         [Problems.WordConstructionsFromWordBank, {
             brute: bruteForceWordConstructionsFromWordBank,
             memo: memoizedWordConstructionsFromWordBank,

@@ -36,3 +36,24 @@ Storing solutions for duplicate sub-problems
 4. seed the trivial answer into the table - small instance of the input where you already know the answer
 5. iterate through the table
 6. fill further positions based on the current position
+
+## Problem Set
+within the `./problems` folder are 8 different brute force approaches to problems that can be improved by dynamic programming.
+The `./solutions` folder provides example solutions using both memoization and tabulation. Feel free to write your own solutions for each, keeping the same function names and argument patterns.
+
+Each of these problems can be run from the command-line, which will output a performance analysis of the problem via `PerformanceObserver`. You can specify whether to execute the solution via brute force (default), memoization, or tabulation.
+
+```sh
+Usage: main [options]
+
+Run Problems Testing Performance of simple methods using either brute-force, memoized, or tabulated executions.
+
+Options:
+  -v, --vers                   output the current version
+  -d, --debug                  output extra debugging
+  -i, --ignore-timeout         do not exit early from analysis via timeout
+  -p, --problem <problem>      Problem to Test (choices: "BestAddendsForSum", "CanConstructWord", "CanSumTarget", "GridTraveler", "NthFibonacci",
+                               "NumbersThatMakeSum", "WordsFromWordBank", "WordsFromWordBankCount")
+  -e, --execution <execution>  Brute-force, Memoized, or Tabulated? (choices: "brute", "memo", "table", default: "brute")
+  -h, --help                   display help for command
+```

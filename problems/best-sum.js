@@ -5,7 +5,7 @@
  * @param {[Number]} numbers
  * @returns {[Number]|null} the numbers in array that add up to targetSum or null if not found
  */
-function bestSumBruteForce(targetSum, numbers) {
+function bruteForceBestAddendsForSum(targetSum, numbers) {
   if (targetSum === 0) return []
   if (targetSum < 0) return null
 
@@ -13,7 +13,7 @@ function bestSumBruteForce(targetSum, numbers) {
 
   for (let num of numbers) {
     const remainder = targetSum - num
-    const remainderCombination = bestSumBruteForce(remainder, numbers)
+    const remainderCombination = bruteForceBestAddendsForSum(remainder, numbers)
     if (remainderCombination !== null) {
       const combination = [...remainderCombination, num]
       if (shortestCombination === null || combination.length < shortestCombination.length) {
@@ -24,4 +24,4 @@ function bestSumBruteForce(targetSum, numbers) {
   return shortestCombination
 }
 
-module.exports.bestSumBruteForce = bestSumBruteForce;
+module.exports.bruteForceBestAddendsForSum = bruteForceBestAddendsForSum;

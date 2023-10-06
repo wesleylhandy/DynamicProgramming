@@ -6,7 +6,7 @@
  * @param {Object} memo - the object containing previously discovered values
  * @returns {[Number]|null} the numbers in array that add up to targetSum or null if not found
  */
-function bestSumMemo(targetSum, numbers, memo = {}) {
+function memoizedBestAddendsForSum(targetSum, numbers, memo = {}) {
     if (targetSum === 0) return []
     if (targetSum < 0) return null
     if (targetSum in memo) return memo[targetSum]
@@ -15,7 +15,7 @@ function bestSumMemo(targetSum, numbers, memo = {}) {
   
     for (let num of numbers) {
       const remainder = targetSum - num
-      const remainderCombination = bestSumMemo(remainder, numbers, memo)
+      const remainderCombination = memoizedBestAddendsForSum(remainder, numbers, memo)
       if (remainderCombination !== null) {
         const combination = [...remainderCombination, num]
         if (shortestCombination === null || combination.length < shortestCombination.length) {
@@ -27,4 +27,4 @@ function bestSumMemo(targetSum, numbers, memo = {}) {
     return shortestCombination
 }
 
-module.exports.bestSumMemo = bestSumMemo
+module.exports.memoizedBestAddendsForSum = memoizedBestAddendsForSum

@@ -6,7 +6,7 @@
  * @param {Object} memo - the object containing previously discovered values
  * @returns {[Number]|null} the numbers in array that add up to targetSum or null if not found
  */
-function bestSumTable(targetSum, numbers) {
+function tabulatedBestAddendsForSum(targetSum, numbers) {
     const table = new Array(targetSum + 1).fill(null)
     table[0] = []
   
@@ -23,4 +23,4 @@ function bestSumTable(targetSum, numbers) {
     return table[targetSum]
 }
 
-module.exports.bestSumTable = bestSumTable;
+module.exports.tabulatedBestAddendsForSum = tabulatedBestAddendsForSum;

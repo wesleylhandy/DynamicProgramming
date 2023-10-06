@@ -13,6 +13,9 @@ const { tabulatedCanConstructWord } = require("./solutions/table/can-construct-w
 const { bruteForceCanSumNumbersToTarget } = require('./problems/can-sum');
 const { memoizedCanSumNumbersToTarget } = require('./solutions/memoized/can-sum');
 const { tabulatedCanSumNumbersToTarget } = require('./solutions/table/can-sum');
+const { bruteForceWordsFromWordBankCount } = require('./problems/count-construct');
+const { memoizedWordsFromWordBankCount } = require('./solutions/memoized/count-construct');
+const { tabulatedWordsFromWordBankCount } = require('./solutions/table/count-construct');
 
 /**
  * @type {Object.<string, string>}
@@ -22,7 +25,8 @@ const Problems = {
     BestAddendsForSum: 'BestAddendsForSum',
     CanConstructWordFromWordBank: 'CanConstructWordFromWordBank',
     WordConstructionsFromWordBank: 'WordConstructionsFromWordBank',
-    CanSumNumbersToTarget: 'CanSumNumbersToTarget'
+    CanSumNumbersToTarget: 'CanSumNumbersToTarget',
+    WordsFromWordBankCount: 'WordsFromWordBankCount'
 }
 
 /**
@@ -88,7 +92,19 @@ function problems(problem) {
                 ['purple', ['purp', 'p', 'le', 'ur', 'purpl']],
                 ['skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']],
                 ['enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']],
-                ['eeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeeee', 'eeeee', 'eeeeee']]
+                ['eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeeee', 'eeeee', 'eeeeee']]
+            ]
+        }],
+        [Problems.WordsFromWordBankCount, {
+            brute: bruteForceWordsFromWordBankCount,
+            memo: memoizedWordsFromWordBankCount,
+            table: tabulatedWordsFromWordBankCount,
+            testCases: [
+                ['abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']],
+                ['purple', ['purp', 'p', 'le', 'ur', 'purpl']],
+                ['skateboard', ['bo', 'rd', 'ate', 't', 'ska', 'sk', 'boar']],
+                ['enterapotentpot', ['a', 'p', 'ent', 'enter', 'ot', 'o', 't']],
+                ['eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef', ['e', 'ee', 'eee', 'eeeee', 'eeeee', 'eeeeee']]
             ]
         }]
     ]);

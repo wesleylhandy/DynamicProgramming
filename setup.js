@@ -22,6 +22,14 @@ const { bruteForceGridTraveler } = require('./problems/grid-traveler');
 const { memoizedGridTraveler } = require('./solutions/memoized/grid-traveler');
 const { tabulatedGridTraveler } = require('./solutions/table/grid-traveler');
 
+const { bruteForceHowNumbersMakeSum } = require('./problems/how-sum');
+const { memoizedHowNumbersMakeSum } = require('./solutions/memoized/how-sum');
+const { tabulatedHowNumbersMakeSum } = require('./solutions/table/how-sum');
+
+const { bruteForceNthFibonacci } = require('./problems/nth-fibonacci');
+const { memoizedNthFibonacci } = require('./solutions/memoized/nth-fibonacci');
+const { tabulatedNthFibonacci } = require('./solutions/table/nth-fibonacci');
+
 /**
  * @type {Object.<string, string>}
  * @const
@@ -31,6 +39,8 @@ const Problems = {
     CanConstructWordFromWordBank: 'CanConstructWordFromWordBank',
     CanSumNumbersToTarget: 'CanSumNumbersToTarget',
     GridTraveler: 'GridTraveler',
+    HowNumbersMakeSum: 'HowNumbersMakeSum',
+    NthFibonacci = 'NthFibonacci',
     WordConstructionsFromWordBank: 'WordConstructionsFromWordBank',
     WordsFromWordBankCount: 'WordsFromWordBankCount'
 }
@@ -82,11 +92,11 @@ function problems(problem) {
             memo: memoizedCanSumNumbersToTarget,
             table: tabulatedCanSumNumbersToTarget,
             testCases: [
-                [7, [2, 3]]
-                [7, [5, 3, 4, 7]]
-                [7, [2, 4]]
-                [8, [2, 3, 5]]
-                [300, [7, 14]]
+                [7, [2, 3]],
+                [7, [5, 3, 4, 7]],
+                [7, [2, 4]],
+                [8, [2, 3, 5]],
+                [300, [7, 14]],
             ]
         }],
         [Problems.GridTraveler, {
@@ -94,11 +104,34 @@ function problems(problem) {
             memo: memoizedGridTraveler,
             table: tabulatedGridTraveler,
             testCases: [
-                [1, 1]
-                [2, 3]
-                [3, 2]
-                [3, 3]
-                [18, 18]
+                [1, 1],
+                [2, 3],
+                [3, 2],
+                [3, 3],
+                [18, 18],
+            ]
+        }],
+        [Problems.HowNumbersMakeSum, {
+            brute: bruteForceHowNumbersMakeSum,
+            memo: memoizedHowNumbersMakeSum,
+            table: tabulatedHowNumbersMakeSum,
+            testCases: [
+                [7, [2,3]],
+                [7, [2,4]],
+                [14, [2, 3, 5, 6, 7]],
+                [300, [7,14]],
+                [8, [3, 5]],
+            ]
+        }],
+        [Problems.NthFibonacci, {
+            brute: bruteForceNthFibonacci,
+            memo: memoizedNthFibonacci,
+            table: tabulatedNthFibonacci,
+            testCases: [
+                [6],
+                [7],
+                [8],
+                [50],
             ]
         }],
         [Problems.WordConstructionsFromWordBank, {

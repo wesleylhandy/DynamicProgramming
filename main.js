@@ -1,23 +1,33 @@
 const { performance, PerformanceObserver } = require("perf_hooks");
-const { Command, Option } = require('commander');
+const { Command, Option, InvalidArgumentError } = require('commander');
 const { problems, Problems, Executions } = require('./setup')
 
 const program = new Command();
+
+function integerArgsParser(value, dummyPrevious) {
+  // parseInt takes a string and a radix
+  const parsedValue = Number.parseInt(value, 10);
+  if (Number.isNaN(parsedValue)) {
+    throw new InvalidArgumentError('Not a number.');
+  }
+  return parsedValue;
+}
 
 program
   .version('0.0.1', '-v, --vers', 'output the current version')
   .description('Run Problems Testing Performance of simple methods using either brute-force, memoized, or tabulated executions.')
   .addOption(new Option('-d, --debug', 'output extra debugging'))
+  .addOption(new Option('-e, --execution <execution>', 'Brute-force, Memoized, or Tabulated?').choices([...Object.values(Executions)]).default(Executions.Brute))
   .addOption(new Option('-i, --ignore-timeout', 'do not exit early from analysis via timeout'))
   .addOption(new Option('-p, --problem <problem>', 'Problem to Test').choices([...Object.keys(Problems)]))
-  .addOption(new Option('-e, --execution <execution>', 'Brute-force, Memoized, or Tabulated?').choices([...Object.values(Executions)]).default(Executions.Brute))
+  .addOption(new Option('-t, --timeout-override <timeInMs>', 'override default timeout').argParser(integerArgsParser))
 
 program.parse(process.argv);
 
 function main() {
 
   const options = program.opts();
-  const { debug, problem, execution, ignoreTimeout } = options;
+  const { debug, problem, execution, ignoreTimeout, timeoutOverride } = options;
   if (debug) console.debug(options);
 
   const problemToSolve = problems(problem);
@@ -27,10 +37,12 @@ function main() {
     return;
   }
 
+  const timeBeforeExit = timeoutOverride ?? 60000;
+
   const timeout = setTimeout(() => {
-    console.error(`${problem} is taking greater than 1 minute to complete`);
+    console.error(`${problem} is taking greater than ${timeBeforeExit}ms to complete`);
     process.exit(124);
-  }, 60000);
+  }, timeBeforeExit);
 
   if (ignoreTimeout) {
     clearTimeout(timeout);

@@ -1,6 +1,8 @@
 const { performance, PerformanceObserver } = require("perf_hooks");
 const { Command, Option, InvalidArgumentError } = require('commander');
-const { problems, Problems, Executions } = require('./setup')
+const { problems, Problems, Executions } = require('./setup');
+
+process.title = 'DynamicProgrammingPerformance';
 
 const program = new Command();
 
@@ -24,7 +26,7 @@ program
 
 program.parse(process.argv);
 
-function main() {
+(function main() {
 
   const options = program.opts();
   const { debug, problem, execution, ignoreTimeout, timeoutOverride } = options;
@@ -39,12 +41,11 @@ function main() {
 
   const timeBeforeExit = timeoutOverride ?? 60000;
 
-  const timeout = setTimeout(() => {
-    console.error(`${problem} is taking greater than ${timeBeforeExit}ms to complete`);
-    process.exit(124);
-  }, timeBeforeExit);
+  // NOTE: For intensive operations, this may not do what is expected.
+  const timeout = setTimeout(handleTimeout, timeBeforeExit);
 
   if (ignoreTimeout) {
+    console.log('timeout cleared');
     clearTimeout(timeout);
   }
 
@@ -59,6 +60,12 @@ function main() {
     perfObserver.disconnect();
   });
 
+  function handleTimeout() {
+    perfObserver.disconnect();
+    console.error(`${problem} is taking greater than ${timeBeforeExit}ms to complete`);
+    process.exit(124);
+  }
+
   perfObserver.observe({ entryTypes: ["function"] });
 
   const performanceWrapperProblem = performance.timerify(problemToSolve[execution]);
@@ -66,6 +73,4 @@ function main() {
   for (let testCaseArguments of problemToSolve.testCaseArguments) {
     performanceWrapperProblem(...testCaseArguments);
   } 
-}
-
-main();
+})();

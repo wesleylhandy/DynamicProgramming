@@ -31,8 +31,9 @@ const MemoizedNthFibonacci = require('./solutions/memoized/nth-fibonacci');
 const TabulatedNthFibonacci = require('./solutions/tabulated/nth-fibonacci');
 
 /**
- * @type {Object.<string, string>}
- * @const
+ * Enum for Problems
+ * @readonly
+ * @enum {string}
  */
 const Problems = {
     BestAddendsForSum: 'BestAddendsForSum',
@@ -43,6 +44,17 @@ const Problems = {
     NumbersThatMakeSum: 'NumbersThatMakeSum',
     WordsFromWordBank: 'WordsFromWordBank',
     WordsFromWordBankCount: 'WordsFromWordBankCount'
+}
+
+/**
+ * Enum for Executions
+ * @readonly
+ * @enum {string}
+ */
+const Executions = {
+    Brute: 'brute',
+    Memo: 'memo',
+    table: 'table',
 }
 
 /**
@@ -62,9 +74,9 @@ const Problems = {
 function problems(problem) {
     const problems = new Map([
         [Problems.BestAddendsForSum, {
-            brute: BruteForceBestAddends.bestAddendsForSum,
-            memo: MemoizedBestAddends.bestAddendsForSum,
-            table: TabulatedBestAddends.bestAddendsForSum,
+            [Executions.Brute]: BruteForceBestAddends.bestAddendsForSum,
+            [Executions.Memo]: MemoizedBestAddends.bestAddendsForSum,
+            [Executions.Table]: TabulatedBestAddends.bestAddendsForSum,
             testCaseArguments: [
                 [7, [5, 2, 3, 4, 7]],
                 [7, [2, 3]],
@@ -77,9 +89,9 @@ function problems(problem) {
             ]
         }],
         [Problems.CanConstructWord, {
-            brute: BruteForceCanConstruct.canConstructWord,
-            memo: MemoizedCanConstruct.canConstructWord,
-            table: TabulatedCanConstruct.canConstructWord,
+            [Executions.Brute]: BruteForceCanConstruct.canConstructWord,
+            [Executions.Memo]: MemoizedCanConstruct.canConstructWord,
+            [Executions.Table]: TabulatedCanConstruct.canConstructWord,
             testCaseArguments: [
                 ["abcdef", ["ab","abc","cd","def","abcd"]],
                 ["skateboard", ["bo","rd","ate","t","ska","sk","boar"]],
@@ -88,9 +100,9 @@ function problems(problem) {
             ]
         }],
         [Problems.CanSumTarget, {
-            brute: BruteForceCanSum.canSumTarget,
-            memo: MemoizedCanSum.canSumTarget,
-            table: TabulatedCanSum.canSumTarget,
+            [Executions.Brute]: BruteForceCanSum.canSumTarget,
+            [Executions.Memo]: MemoizedCanSum.canSumTarget,
+            [Executions.Table]: TabulatedCanSum.canSumTarget,
             testCaseArguments: [
                 [7, [2, 3]],
                 [7, [5, 3, 4, 7]],
@@ -100,9 +112,9 @@ function problems(problem) {
             ]
         }],
         [Problems.GridTraveler, {
-            brute: BruteForceGridTraveler.gridTraveler,
-            memo: MemoizedGridTraveler.gridTraveler,
-            table: TabulatedGridTraveler.gridTraveler,
+            [Executions.Brute]: BruteForceGridTraveler.gridTraveler,
+            [Executions.Memo]: MemoizedGridTraveler.gridTraveler,
+            [Executions.Table]: TabulatedGridTraveler.gridTraveler,
             testCaseArguments: [
                 [1, 1],
                 [2, 3],
@@ -112,9 +124,9 @@ function problems(problem) {
             ]
         }],
         [Problems.NthFibonacci, {
-            brute: BruteForceNthFibonacci.nthFibonacci,
-            memo: MemoizedNthFibonacci.nthFibonacci,
-            table: TabulatedNthFibonacci.nthFibonacci,
+            [Executions.Brute]: BruteForceNthFibonacci.nthFibonacci,
+            [Executions.Memo]: MemoizedNthFibonacci.nthFibonacci,
+            [Executions.Table]: TabulatedNthFibonacci.nthFibonacci,
             testCaseArguments: [
                 [6],
                 [7],
@@ -123,9 +135,9 @@ function problems(problem) {
             ]
         }],
         [Problems.NumbersThatMakeSum, {
-            brute: BruteForceMakeSum.numbersThatMakeSum,
-            memo: MemoizedMakeSum.numbersThatMakeSum,
-            table: TabulatedMakeSum.numbersThatMakeSum,
+            [Executions.Brute]: BruteForceMakeSum.numbersThatMakeSum,
+            [Executions.Memo]: MemoizedMakeSum.numbersThatMakeSum,
+            [Executions.Table]: TabulatedMakeSum.numbersThatMakeSum,
             testCaseArguments: [
                 [7, [2,3]],
                 [7, [2,4]],
@@ -135,9 +147,9 @@ function problems(problem) {
             ]
         }],
         [Problems.WordsFromWordBank, {
-            brute: BruteForceWordsFromWordBank.wordsFromWordBank,
-            memo: MemoizedWordsFromWordBank.wordsFromWordBank,
-            table: TabulatedWordsFromWordBank.wordsFromWordBank,
+            [Executions.Brute]: BruteForceWordsFromWordBank.wordsFromWordBank,
+            [Executions.Memo]: MemoizedWordsFromWordBank.wordsFromWordBank,
+            [Executions.Table]: TabulatedWordsFromWordBank.wordsFromWordBank,
             testCaseArguments: [
                 ['abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']],
                 ['purple', ['purp', 'p', 'le', 'ur', 'purpl']],
@@ -147,9 +159,9 @@ function problems(problem) {
             ]
         }],
         [Problems.WordsFromWordBankCount, {
-            brute: BruteForceWordsCount.wordsFromWordBankCount,
-            memo: MemoizedWordsCount.wordsFromWordBankCount,
-            table: TabulatedWordsCount.wordsFromWordBankCount,
+            [Executions.Brute]: BruteForceWordsCount.wordsFromWordBankCount,
+            [Executions.Memo]: MemoizedWordsCount.wordsFromWordBankCount,
+            [Executions.Table]: TabulatedWordsCount.wordsFromWordBankCount,
             testCaseArguments: [
                 ['abcdef', ['ab', 'abc', 'cd', 'def', 'abcd', 'ef', 'c']],
                 ['purple', ['purp', 'p', 'le', 'ur', 'purpl']],
@@ -163,5 +175,6 @@ function problems(problem) {
     return problems.get(problem)
 }
 
+module.exports.Executions = Executions;
 module.exports.problems = problems;
 module.exports.Problems = Problems;

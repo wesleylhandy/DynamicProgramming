@@ -1,6 +1,6 @@
 const { performance, PerformanceObserver } = require("perf_hooks");
 const { Command, Option } = require('commander');
-const { problems, Problems } = require('./setup')
+const { problems, Problems, Executions } = require('./setup')
 
 const program = new Command();
 
@@ -10,7 +10,7 @@ program
   .addOption(new Option('-d, --debug', 'output extra debugging'))
   .addOption(new Option('-i, --ignore-timeout', 'do not exit early from analysis via timeout'))
   .addOption(new Option('-p, --problem <problem>', 'Problem to Test').choices([...Object.keys(Problems)]))
-  .addOption(new Option('-e, --execution <execution>', 'Brute-force, Memoized, or Tabulated?').choices(['brute', 'memo', 'table']).default('brute'))
+  .addOption(new Option('-e, --execution <execution>', 'Brute-force, Memoized, or Tabulated?').choices([...Object.values(Executions)]).default(Executions.Brute))
 
 program.parse(process.argv);
 
